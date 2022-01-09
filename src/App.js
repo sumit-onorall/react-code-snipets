@@ -1,10 +1,22 @@
+import { useState, createContext } from 'react';
 import './App.css';
+import MyComp from './MyComp';
+export const ThemeContext = createContext();
 
 function App() {
+   const [darkTheme, setDarkTheme] = useState(true);
+
+   const toggleTheme = () => {
+      setDarkTheme((prev) => !prev);
+   };
+
    return (
-      <div className="App">
-         <h2>app</h2>
-      </div>
+      <ThemeContext.Provider value={darkTheme}>
+         <div className="App">
+            <MyComp />
+            <button onClick={toggleTheme}>Toggle Theme</button>
+         </div>
+      </ThemeContext.Provider>
    );
 }
 
